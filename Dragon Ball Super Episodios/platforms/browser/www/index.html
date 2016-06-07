@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <title>Dragon Ball Super - Todos os episódios até o momento</title>
+
+  <!-- JS dependencies -->
+  <script src="lib/onsen/js/onsenui.js"></script>
+
+  <!-- CSS dependencies -->
+  <link rel="stylesheet" href="lib/onsen/css/onsenui.css">
+  <link rel="stylesheet" href="lib/onsen/css/onsen-css-components.css">
+
+  <!-- App init -->
+  <script src="js/app.js"></script>
+
+</head>
+
+<body>
+  <!-- Cordova reference -->
+  <script src="cordova.js"></script>
+  <script src="scripts/index.js"></script>
+  <ons-navigator id="myNavigator" page="page1"></ons-navigator>
+
+  <!-- App layout -->
+  <ons-template id="page1">
+    <ons-page>
+      <ons-toolbar>
+        <div class="center">Episódios Dragon Ball Super</div>
+      </ons-toolbar>
+      <ons-list>
+        <ons-lazy-repeat id="infinite-list"></ons-lazy-repeat>
+      </ons-list>
+  </ons-template>
+
+  <ons-template id="page2">
+    <ons-page>
+      <ons-toolbar>
+        <div class="left">
+          <ons-back-button></ons-back-button>
+        </div>
+        <div class="center" id="numepisodio"></div>
+      </ons-toolbar>
+      <h4 class="center" style='text-align:center;' id="tituloepisodio"></h4>
+      <video id="video" controls poster="img/videoscreenload.jpg" style="display:none; width:100%; height:80%;" src="" type="video/mp4">
+      </video>
+      <!-- <ons-fab position="bottom right" ripple><ons-icon icon="md-plus"></ons-icon></ons-fab>  -->
+    </ons-page>
+  </ons-template>
+</body>
+
+</html>

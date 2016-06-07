@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="msapplication-tap-highlight" content="no" />
+  <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+  <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+  <link rel="stylesheet" href="lib/onsen/css/onsenui.css" />
+  <link rel="stylesheet" href="lib/onsen/css/onsen-css-components.css" />
+  <script src="lib/onsen/js/onsenui.js"></script>
+  <title>Hello World</title>
+  <script>
+    document.addEventListener('deviceready', playvideo(), false);
+
+    function playvideo() {
+      //alert(window.innerWidth);
+      //VideoPlayer.play('http://1temp908.jo.fairytaill.com/Dragon%20Ball%20Super/Dragon%20Ball%20Super%2037.MP4');
+    }
+
+    function playvideo2(url) {
+      //alert(url);
+      var video = document.getElementById('video');
+      //video.style.display = "block";
+      if (video.src != url)
+        video.src = url;
+
+      video.play();
+
+      video.addEventListener("ended",
+        function() {
+          video.stop();
+        }, false);
+
+      video.addEventListener("stop",
+        function() {
+          alert("ok");
+          //video.style.display = "none";
+        }, false);
+    }
+  </script>
+</head>
+
+<body>
+  <!-- Cordova reference -->
+  <script src="cordova.js"></script>
+  <script src="scripts/index.js"></script>
+  <h4> CLique para ver o video !</h4>
+  <!--<a href="#" onclick="playvideo2('http://1temp908.jo.fairytaill.com/Dragon%20Ball%20Super/Dragon%20Ball%20Super%2001.MP4')">Clique AQUI 01</a>
+
+  <a href="#" onclick="playvideo2('http://1temp908.jo.fairytaill.com/Dragon%20Ball%20Super/Dragon%20Ball%20Super%2037.MP4')">Clique AQUI 38</a>
+  <a href="#" onclick="playvideo2('http://1temp908.jo.fairytaill.com/Dragon%20Ball%20Super/Dragon%20Ball%20Super%2038.MP4')">Clique AQUI 39</a>
+-->
+  <video id="video" poster="img/videoscreenload.jpg" style="display:none;" src="" type="video/mp4">
+  </video>
+  <script>
+    window.addEventListener('load', function() {
+      var lazyRepeat = document.querySelector('#list');
+      lazyRepeat.delegate = {
+        calculateItemHeight: function(index) {
+          // Specify this if the height depends on the element.
+          return ons.platform.isAndroid() ? 48 : 44;;
+        },
+        createItemContent: function(index, template) {
+          var dom = template.cloneNode(true);
+          dom.innerText = "Episódio #" + index;
+          return dom;
+        },
+        /*createItemContent: function(index, oldContent) {
+          if (oldContent) {
+            return oldContent;
+          }
+
+          var $element = $("<div><span style='opacity: 0.7;'><ons-icon icon='fa-spinner' spin='true'></ons-icon> Loading bacon...</span></div>");
+
+          var request = $.getJSON('https://baconipsum.com/api/?type=meat-and-filler&sentences=1&callback=?', function(data) {
+            $element.text(data[0]);
+          });
+
+          $element.data('request', request);
+          return $element[0];
+        },
+        destroyItemContent: function(index, element) {
+          var request = $element.data('request');
+          request.abort();
+        },*/
+        countItems: function() {
+          // Return number of items.
+          return 100000000;
+        },
+        destroyItem: function(index, item) {
+          // Optional method that is called when an item is unloaded.
+          console.log('Destroyed item with index: ' + index);
+        }
+      };
+    });
+  </script>
+
+  <ons-page>
+    <ons-toolbar>
+      <div class="center">Lists</div>
+    </ons-toolbar>
+
+    <ons-list id="list">
+      <ons-lazy-repeat id="infinite-list"></ons-lazy-repeat>
+    </ons-list>
+  </ons-page>
+</body>
+
+</html>
